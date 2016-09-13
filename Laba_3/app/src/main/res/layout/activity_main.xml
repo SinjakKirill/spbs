@@ -7,10 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.sinyakkirill.lab_1_2.MainActivity">
+    tools:context="by.bstu.sinjakkirill.basejava.laba_3.MainActivity">
 
     <TextView
-        android:id="@+id/NewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
