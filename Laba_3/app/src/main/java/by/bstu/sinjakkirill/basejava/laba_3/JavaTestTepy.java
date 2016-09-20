@@ -3,8 +3,65 @@ import static java.lang.Math.*;
 
 /**
  * Created by Sinyak Kirill on 19.09.2016.
+ * @autor Sinjak Kirill
+ * @version 1.0
+ *
  */
 public class JavaTestTepy {
+
+    public class WrapperString{
+        public WrapperString(String _string) {
+            this._string = _string;
+        }
+
+        public String get_string() {
+            return _string;
+        }
+
+        public void set_string(String _string) {
+            this._string = _string;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            WrapperString that = (WrapperString) o;
+
+            return _string != null ? _string.equals(that._string) : that._string == null;
+
+
+
+        }
+
+        @Override
+        public int hashCode() {
+            return _string != null ? _string.hashCode() : 0;
+        }
+
+        String _string = new String("hvksdnzkvws");
+
+        public void replace (char oldchar, char newchar){
+            for(int i = 0; i < _string.length(); i++){
+                if(_string.charAt(i) == oldchar){
+                    //_string.set(i, newchar);
+                    System.out.println(newchar);
+                }
+                else{
+                    System.out.println(oldchar);
+                }
+            }
+        }
+
+        class InnerClass{
+            /*@Override
+            public  void  replace(char oldchar, char newchar){
+
+            }*/
+        }
+    }
 
     static int sint;
     final int  _int1 = 1;
@@ -12,6 +69,12 @@ public class JavaTestTepy {
     public static  final int _int3 = 3;
 
     public static void main(String[] args) {
+
+        /**
+         * @return void
+         * @throws
+         * @param String[] args
+         */
 
         char _char = 'k';
         int _int = 99;
@@ -48,7 +111,51 @@ public class JavaTestTepy {
         System.out.println("Math.round(Math.PI) = " + Math.round(Math.PI));
         System.out.println("Math.round(Math.E) = " + Math.round(Math.E));
         System.out.println("Math.min(Math.PI,Math.E) = " + Math.min(Math.PI,Math.E));
-        System.out.println("");
+
+        //создание классов оболочек
+        Integer _obInteger = new Integer("1234");
+        Boolean _obBoolean = new Boolean(true);
+        Character _obCharacter = new Character('9');
+        Byte _obByte = new Byte("127");
+        Short _obShort = new Short("444");
+        Long _obLong = new Long("9999999");
+        Double _obDouble = new Double("21.999");
+
+        _obInteger += _obByte;
+        System.out.println("Вывод _obByte после сдвига: " + _obInteger);
+
+        char[][] c1;
+        char[] c2[];
+        char c3[][];
+
+        c1 = new char[3][];
+        c1[0] = new char[2];
+        c1[1] = new char[3];
+        c1[2] = new char[4];
+
+        System.out.println("c1.length: " + c1.length);
+        System.out.println("c1.length[0]: " + c1[0].length);
+        System.out.println("c1.length[1]: " + c1[1].length);
+        System.out.println("c1.length[2]: " + c1[2].length);
+
+        c2 = new char[2][2];
+        c2[0][0] = '7';
+        c2[0][1] = '6';
+        c2[1][0] = '0';
+        c2[1][1] = '4';
+
+        c1[0][0] = '5';
+        c1[0][1] = '6';
+        c1[1][0] = '2';
+        c1[1][1] = '1';
+
+        boolean  comRez = c1 == c2;
+        System.out.println("boolean  comRez = c1 == c2: " + comRez);
+
+        for(char[] i : c2){
+            System.out.println(i);
+        }
+
         System.out.println("");
     }
 }
