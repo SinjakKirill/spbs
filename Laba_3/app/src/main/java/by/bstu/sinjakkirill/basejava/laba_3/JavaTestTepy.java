@@ -10,6 +10,8 @@ import static java.lang.Math.*;
 public class JavaTestTepy {
 
     public class WrapperString{
+        WrapperString(){}
+
         public WrapperString(String _string) {
             this._string = _string;
         }
@@ -31,9 +33,6 @@ public class JavaTestTepy {
             WrapperString that = (WrapperString) o;
 
             return _string != null ? _string.equals(that._string) : that._string == null;
-
-
-
         }
 
         @Override
@@ -41,12 +40,11 @@ public class JavaTestTepy {
             return _string != null ? _string.hashCode() : 0;
         }
 
-        String _string = new String("hvksdnzkvws");
+        String _string;
 
-        public void replace (char oldchar, char newchar){
+        public void replace(char oldchar, char newchar){
             for(int i = 0; i < _string.length(); i++){
                 if(_string.charAt(i) == oldchar){
-                    //_string.set(i, newchar);
                     System.out.println(newchar);
                 }
                 else{
@@ -55,11 +53,20 @@ public class JavaTestTepy {
             }
         }
 
-        class InnerClass{
-            /*@Override
-            public  void  replace(char oldchar, char newchar){
-
-            }*/
+        void anon(){
+            WrapperString wrapperString = new WrapperString(){
+                @Override
+                public void replace(char oldchar, char newchar){
+                    for(int i = 0; i < _string.length(); i++){
+                        if(_string.charAt(i) == oldchar){
+                            System.out.println("переопредление");
+                        }
+                        else{
+                            System.out.println("переопредление");
+                        }
+                    }
+                }
+            };
         }
     }
 
@@ -93,11 +100,12 @@ public class JavaTestTepy {
         System.out.println("String + double: " + _string + " + " + _double + " = " + (_string + _double));
         System.out.println("byte  = byte + int: " + "Incompatible types!");
         System.out.println("int = double + long: " + "Incompatible types!");
-        System.out.println("long = int + 2147483647: " + (_long = _int + 2147483647));
+        System.out.println("long = int + 2147483647: " + (_long = (long)_int + 2147483647));
         System.out.println("Вывод значения без инициализации: " + sint);
         System.out.println("boolean = boolean && boolean: " + _boolean + " && " + (_boolean = _boolean && _boolean));
         System.out.println("boolean= boolean ^ boolean: "  + _boolean + " ^ " + (_boolean = _boolean ^ _boolean));
         System.out.println("Типы для 9223372036854775807 - " + "long");
+        //long h = (long)922337203685477580;
         System.out.println("Типы для 0x7fff_ffff_fff - " + "long");
         System.out.println("'a' - " + _char1 + ";   '/u0061' - " + _char2 + ";   97 - " + _char3);
         System.out.println("'a' + '/u0061' + 97 = " + "Incompatible types!");
@@ -112,6 +120,7 @@ public class JavaTestTepy {
         System.out.println("Math.round(Math.E) = " + Math.round(Math.E));
         System.out.println("Math.min(Math.PI,Math.E) = " + Math.min(Math.PI,Math.E));
 
+
         //создание классов оболочек
         Integer _obInteger = new Integer("1234");
         Boolean _obBoolean = new Boolean(true);
@@ -120,6 +129,10 @@ public class JavaTestTepy {
         Short _obShort = new Short("444");
         Long _obLong = new Long("9999999");
         Double _obDouble = new Double("21.999");
+        System.out.println("_obLong.MIN_VALUE: " + _obLong.MIN_VALUE);
+        System.out.println("_obLong.MAX_VALUE: " + _obLong.MAX_VALUE);
+        System.out.println("_obDouble.MIN_VALUE: " + _obDouble.MIN_VALUE);
+        System.out.println("_obDouble.MAX_VALUE: " + _obDouble.MAX_VALUE);
 
         _obInteger += _obByte;
         System.out.println("Вывод _obByte после сдвига: " + _obInteger);
