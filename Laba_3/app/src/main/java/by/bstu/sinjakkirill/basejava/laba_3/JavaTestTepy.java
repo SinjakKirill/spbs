@@ -104,9 +104,16 @@ public class JavaTestTepy {
         System.out.println("Вывод значения без инициализации: " + sint);
         System.out.println("boolean = boolean && boolean: " + _boolean + " && " + (_boolean = _boolean && _boolean));
         System.out.println("boolean= boolean ^ boolean: "  + _boolean + " ^ " + (_boolean = _boolean ^ _boolean));
-        System.out.println("Типы для 9223372036854775807 - " + "long");
-        //long h = (long)922337203685477580;
-        System.out.println("Типы для 0x7fff_ffff_fff - " + "long");
+        System.out.println("Типы для 9223372036854775807 - " + "Long");
+        Long h = new Long("9223372036854775807");
+        long f = new Long(h);
+        long y = 0x7fff_ffff_fffL;
+        long d = 9223372036854775807L;
+        int q = -128;
+        System.out.println(q>>2);
+        System.out.println(q>>>2);
+        System.out.println(f);
+        System.out.println("Типы для 0x7fff_ffff_fff - " + "Long");
         System.out.println("'a' - " + _char1 + ";   '/u0061' - " + _char2 + ";   97 - " + _char3);
         System.out.println("'a' + '/u0061' + 97 = " + "Incompatible types!");
         System.out.println("3.45 % 2.4 = " +  3.45 % 2.4 );
@@ -134,8 +141,44 @@ public class JavaTestTepy {
         System.out.println("_obDouble.MIN_VALUE: " + _obDouble.MIN_VALUE);
         System.out.println("_obDouble.MAX_VALUE: " + _obDouble.MAX_VALUE);
 
+        String s34 = "2345";
+        int _s34 = Integer.valueOf(s34);
+        _s34 = Integer.parseInt(s34);
+        byte[] _arrByte = new byte[s34.length()];
+        _arrByte = s34.getBytes();
+        String _s2_34 = new String(_arrByte);
+        boolean _bool1, _bool2;
+        String s35 = "true";
+        _bool1 = Boolean.valueOf(s35);
+        System.out.println("_bool1: " + _bool1);
+        _bool2 = Boolean.parseBoolean(s35);
+        System.out.println("_bool2: " + _bool2);
+        String _s1 = new String("qqqq");
+        String _s3 = "qqqq";
+        String _s4 = "qqqq";
+        String _s2 = new String("qqqq");
+        System.out.println("_s1 == _s2: " + (_s1 == _s2));
+        System.out.println("_s1.equals(_s2): " + _s1.equals(_s2));
+        System.out.println("_s1.compareTo(_s2): " + _s1.compareTo(_s2));
+        _s2 = null;
+        System.out.println("_s1 == _s2: " + (_s1 == _s2));
+        System.out.println("_s1.equals(_s2): " + _s1.equals(_s2));
+        //System.out.println("_s1.compareTo(_s2): " + _s1.compareTo(_s2));
+        _s1.split(" ");
+        System.out.println(" _s1.contains(q): " +  _s1.contains("q"));
+        System.out.println("_s1.hashCode(): " + _s1.hashCode());
+        System.out.println("_s1.indexOf(3): " + _s1.indexOf('q'));
+        System.out.println("_s1.replace('q', 'r'): " + _s1.replace('q', 'r'));
+        //_s1.replace('q', 'r');
+
+
+
+
+
+
         _obInteger += _obByte;
         System.out.println("Вывод _obByte после сдвига: " + _obInteger);
+
 
         char[][] c1;
         char[] c2[];
@@ -151,21 +194,21 @@ public class JavaTestTepy {
         System.out.println("c1.length[1]: " + c1[1].length);
         System.out.println("c1.length[2]: " + c1[2].length);
 
-        c2 = new char[2][2];
-        c2[0][0] = '7';
-        c2[0][1] = '6';
-        c2[1][0] = '0';
-        c2[1][1] = '4';
+            c2 = new char[2][2];
+            c2[0][0] = '7';
+            c2[0][1] = '6';
+            c2[1][0] = '0';
+            c2[1][1] = '4';
 
-        c1[0][0] = '5';
-        c1[0][1] = '6';
-        c1[1][0] = '2';
-        c1[1][1] = '1';
+            c1[0][0] = '5';
+            c1[0][1] = '6';
+            c1[1][0] = '2';
+            c1[1][1] = '1';
 
-        boolean  comRez = c1 == c2;
-        System.out.println("boolean  comRez = c1 == c2: " + comRez);
+            boolean  comRez = c1 == c2;
+            System.out.println("boolean  comRez = c1 == c2: " + comRez);
 
-        for(char[] i : c2){
+            for(char[] i : c2){
             System.out.println(i);
         }
 
