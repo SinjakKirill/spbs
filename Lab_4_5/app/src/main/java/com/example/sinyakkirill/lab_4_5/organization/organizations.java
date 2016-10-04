@@ -5,4 +5,5 @@ package com.example.sinyakkirill.lab_4_5.organization;
  */
 
 public enum organizations {
+
 }
