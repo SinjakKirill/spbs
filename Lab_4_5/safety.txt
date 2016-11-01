@@ -1,0 +1,25 @@
+        ArrayList<Listener> listeners = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<>();
+
+        listeners.add(new Listener("Procurat", "Vadim", 1996, Organizations.Epam));
+        listeners.add(new Listener("Procurat", "Yana", 1998, Organizations.Epam));
+        listeners.add(new Listener("Buranco", "Irina", 1997, Organizations.Pek));
+        listeners.add(new Listener("Zhukovich", "Sergey", 1996, Organizations.Epam));
+        listeners.add(new Listener("Zhukovich", "Vlad", 1996, Organizations.Pek));
+        listeners.add(new Listener("Melech", "Elizaveta", 1995, Organizations.Epam));
+        listeners.add(new Listener("Sinyak", "Margarita", 2000, Organizations.Pek));
+        listeners.add(new Listener("Ivanov", "Oleg", 1995, Organizations.Epam));
+        listeners.add(new Listener("Petrov", "Maksim", 1994, Organizations.Pek));
+        listeners.add(new Listener("Zaverach", "Dmitriy", 1996, Organizations.Pek));
+
+
+        students.add(new Student("Sinyak", "Kirill", 1997, 7.0f));
+        students.add(new Student("Mutnik", "Vlad", 1997, 6.8f));
+        students.add(new Student("Sattarowa", "Dasha", 1996, 7.1f));
+        students.add(new Student("Toklenok", "Anton", 1997, 4.6f));
+        students.add(new Student("Cherepko", "Roman", 1995, 5.5f));
+        students.add(new Student("Podolyanchik", "Alina", 1998, 8.0f));
+        students.add(new Student("Dreko", "Aleksey", 1995, 7.7f));
+        students.add(new Student("Ilyin", "Vlad", 1996, 6.6f));
+        students.add(new Student("Stefanovich", "Artem", 1995, 6.8f));
+        students.add(new Student("Zhelnirovich", "Kirill", 1995, 7.9f));
