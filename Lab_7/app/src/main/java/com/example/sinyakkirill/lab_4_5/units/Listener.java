@@ -7,8 +7,8 @@ import com.example.sinyakkirill.lab_4_5.organization.Organizations;
  */
 
 public class Listener extends Person {
-    public Listener(String Surname, String Name, int bday, Organizations organizations){
-        super(Surname, Name, bday);
+    public Listener(String Surname, String Name, int[] bdayDDMMYY, Organizations organizations){
+        super(Surname, Name, bdayDDMMYY);
         this.organization = organizations;
     }
 

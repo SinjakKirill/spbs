@@ -84,27 +84,27 @@ public class Manager implements IAction {
             throw new EduException("(maxStudent + maxListener) > limitCourse(30)");
         for(int i = 0; i < maxStudent; i++){
             int index = random.nextInt(8);
-            try {
-                someCourse.add(new Student(surnameArr[index], nameArr[index], random.nextInt(20) + 1990, random.nextFloat() * 10));
+            /*try {
+                //someCourse.add(new Student(surnameArr[index], nameArr[index], random.nextInt(20) + 1990, random.nextFloat() * 10));
             } catch (EduException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
         for(int j = 0; j < maxListener; j++){
             int index = random.nextInt(8);
             if(index % 2 == 1) {
-                try {
+                /*try {
                     someCourse.add(new Listener(surnameArr[index], nameArr[index], random.nextInt(20) + 1990, Organizations.Epam));
                 } catch (EduException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
             else{
-                try {
+                /*try {
                     someCourse.add(new Listener(surnameArr[index], nameArr[index], random.nextInt(20) + 1990, Organizations.Pek));
                 } catch (EduException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         }
         return someCourse;

@@ -8,8 +8,8 @@ import java.util.Comparator;
 
 public class Student extends Person {
 
-    public Student(String Surname, String Name, int bday, float avgMark){
-        super(Surname, Name, bday);
+    public Student(String Surname, String Name, int[] bdayDDMMYY, float avgMark){
+        super(Surname, Name, bdayDDMMYY);
         this.avgMark = avgMark;
     }
 

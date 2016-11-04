@@ -10,21 +10,21 @@ import java.util.Date;
 
 public abstract class Person {
 
-    public Person(String Surname, String Name, int bday){
+    public Person(String Surname, String Name, int[] bdayDDMMYY){
         this.Surname = Surname;
         this.Name = Name;
-        this.bday = bday;
+        this.bday = bdayDDMMYY;
     }
 
     protected String Name;
     protected String Surname;
-    protected int bday;
+    protected int[] bday;
 
-    public int getBday() {
+    public int[] getBday() {
         return bday;
     }
 
-    public void setBday(int bday) {
+    public void setBday(int[] bday) {
         this.bday = bday;
     }
 
@@ -53,9 +53,9 @@ public abstract class Person {
     public static Comparator<Person> snordererBDay = new Comparator<Person>() {
         @Override
         public int compare(Person o1, Person o2) {
-            if(o1.getBday() > o2.getBday())
+            if(o1.getBday()[2] > o2.getBday()[2])
                 return 1;
-            if(o1.getBday() < o2.getBday())
+            if(o1.getBday()[2] < o2.getBday()[2])
                 return -1;
             return 0;
         }
