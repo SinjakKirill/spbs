@@ -15,11 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationFullNameActivity">
+        <activity android:name=".registrationactivity.RegistrationFullNameActivity">
         </activity>
-        <activity android:name=".BdayActivity">
+        <activity android:name=".registrationactivity.BdayActivity">
         </activity>
-        <activity android:name=".LocationActivity">
+        <activity android:name=".registrationactivity.LocationActivity">
+        </activity>
+        <activity android:name=".registrationactivity.FinishRegistrationActivity">
+        </activity>
+        <activity android:name=".registrationactivity.LoginAndPasswordActivity">
         </activity>
     </application>
 

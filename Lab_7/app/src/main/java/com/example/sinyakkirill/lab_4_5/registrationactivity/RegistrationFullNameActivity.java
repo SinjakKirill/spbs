@@ -1,4 +1,4 @@
-package com.example.sinyakkirill.lab_4_5;
+package com.example.sinyakkirill.lab_4_5.registrationactivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sinyakkirill.lab_4_5.R;
+import com.example.sinyakkirill.lab_4_5.registrationactivity.BdayActivity;
+
 public class RegistrationFullNameActivity extends AppCompatActivity {
 
     String Name;
@@ -19,6 +22,8 @@ public class RegistrationFullNameActivity extends AppCompatActivity {
     String[] BDay;
     String City;
     String Country;
+    String Login;
+    String Password;
 
 
     EditText surnameEditText;
@@ -59,6 +64,8 @@ public class RegistrationFullNameActivity extends AppCompatActivity {
         BDay = getIntent().getStringArrayExtra("bday");
         City = getIntent().getStringExtra("city");
         Country = getIntent().getStringExtra("country");
+        Login = getIntent().getStringExtra("login");
+        Password = getIntent().getStringExtra("password");
 
         surnameEditText.setText(Surname);
         nameEditText.setText(Name);
@@ -70,15 +77,24 @@ public class RegistrationFullNameActivity extends AppCompatActivity {
     }
 
     public void nextPage(View view){
-        Intent intent = new Intent(this, BdayActivity.class);
-        intent.putExtra("surname", surnameEditText.getText().toString());
-        intent.putExtra("name", nameEditText.getText().toString());
-        intent.putExtra("patronymic", patronymicEditText.getText().toString());
-        intent.putExtra("bday", BDay);
-        intent.putExtra("city", City);
-        intent.putExtra("country", Country);
-        startActivity(intent);
-        this.finish();
+        if(!nameEditText.getText().toString().equals("") && !surnameEditText.getText().toString().equals("") && !patronymicEditText.getText().toString().equals("")) {
+            Intent intent = new Intent(this, BdayActivity.class);
+            intent.putExtra("surname", surnameEditText.getText().toString());
+            intent.putExtra("name", nameEditText.getText().toString());
+            intent.putExtra("patronymic", patronymicEditText.getText().toString());
+            intent.putExtra("bday", BDay);
+            intent.putExtra("city", City);
+            intent.putExtra("country", Country);
+            intent.putExtra("login", Login);
+            intent.putExtra("password", Password);
+            startActivity(intent);
+            this.finish();
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Enter surname, name and patronymic!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void prevPage(View view){

@@ -13,7 +13,31 @@ public class Student extends Person {
         this.avgMark = avgMark;
     }
 
+    public Student(String Surname, String Name, String Patronymic, int[] bdayDDMMYY, float avgMark){
+        super(Surname, Name, Patronymic, bdayDDMMYY);
+        this.avgMark = avgMark;
+    }
+
     private float avgMark;
+
+    public String getLogin() {
+        return Login;
+    }
+
+    public void setLogin(String login) {
+        Login = login;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    private String Login;
+    private String Password;
 
     public float getAvgMark() {
         return avgMark;

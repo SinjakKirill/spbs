@@ -1,6 +1,5 @@
-package com.example.sinyakkirill.lab_4_5;
+package com.example.sinyakkirill.lab_4_5.registrationactivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static com.example.sinyakkirill.lab_4_5.RegistrationFullNameActivity.diologCancellationOfRegistration;
+import com.example.sinyakkirill.lab_4_5.R;
+
+import static com.example.sinyakkirill.lab_4_5.registrationactivity.RegistrationFullNameActivity.diologCancellationOfRegistration;
 
 public class BdayActivity extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class BdayActivity extends AppCompatActivity {
     String[] BDay;
     String City;
     String Country;
+    String Login;
+    String Password;
 
 
     EditText dayEditText;
@@ -36,6 +39,8 @@ public class BdayActivity extends AppCompatActivity {
         BDay = getIntent().getStringArrayExtra("bday");
         City = getIntent().getStringExtra("city");
         Country = getIntent().getStringExtra("country");
+        Login = getIntent().getStringExtra("login");
+        Password = getIntent().getStringExtra("password");
 
         dayEditText = (EditText) findViewById(R.id.dayEditText);
         monthEditText = (EditText) findViewById(R.id.monthEditText);
@@ -65,6 +70,8 @@ public class BdayActivity extends AppCompatActivity {
         intent.putExtra("bday", BDay);
         intent.putExtra("city", City);
         intent.putExtra("country", Country);
+        intent.putExtra("login", Login);
+        intent.putExtra("password", Password);
         startActivity(intent);
         this.finish();
     }
@@ -82,24 +89,36 @@ public class BdayActivity extends AppCompatActivity {
         intent.putExtra("bday", BDay);
         intent.putExtra("city", City);
         intent.putExtra("country", Country);
+        intent.putExtra("login", Login);
+        intent.putExtra("password", Password);
         startActivity(intent);
         this.finish();
     }
 
     public void nextPage(View view) {
         BDay = new String[3];
-        BDay[0] = dayEditText.getText().toString();
-        BDay[1] = monthEditText.getText().toString();
-        BDay[2] = yearEditText.getText().toString();
-        Intent intent = new Intent(this, LocationActivity.class);
-        intent.putExtra("name", Name);
-        intent.putExtra("surname", Surname);
-        intent.putExtra("patronymic", Patronymic);
-        intent.putExtra("bday", BDay);
-        intent.putExtra("city", City);
-        intent.putExtra("country", Country);
-        startActivity(intent);
-        this.finish();
+
+        if(!dayEditText.getText().toString().equals("") && !monthEditText.getText().toString().equals("") && !yearEditText.getText().toString().equals("")) {
+            BDay[0] = dayEditText.getText().toString();
+            BDay[1] = monthEditText.getText().toString();
+            BDay[2] = yearEditText.getText().toString();
+            Intent intent = new Intent(this, LocationActivity.class);
+            intent.putExtra("name", Name);
+            intent.putExtra("surname", Surname);
+            intent.putExtra("patronymic", Patronymic);
+            intent.putExtra("bday", BDay);
+            intent.putExtra("city", City);
+            intent.putExtra("country", Country);
+            intent.putExtra("login", Login);
+            intent.putExtra("password", Password);
+            startActivity(intent);
+            this.finish();
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Enter your birthday!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 }

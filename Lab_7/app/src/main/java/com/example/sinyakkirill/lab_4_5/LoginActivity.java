@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.sinyakkirill.lab_4_5.registrationactivity.RegistrationFullNameActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override

@@ -16,9 +16,25 @@ public abstract class Person {
         this.bday = bdayDDMMYY;
     }
 
+    public Person(String Surname, String Name, String Patronymic, int[] bdayDDMMYY){
+        this.Surname = Surname;
+        this.Name = Name;
+        this.Patronymic = Patronymic;
+        this.bday = bdayDDMMYY;
+    }
+
     protected String Name;
     protected String Surname;
+    protected String Patronymic;
     protected int[] bday;
+
+    public String getPatronymic() {
+        return Patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        Patronymic = patronymic;
+    }
 
     public int[] getBday() {
         return bday;
