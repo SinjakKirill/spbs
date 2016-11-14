@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sinyakkirill.lab_4_5.R;
+import com.example.sinyakkirill.lab_4_5.units.Student;
 
 import static com.example.sinyakkirill.lab_4_5.registrationactivity.RegistrationFullNameActivity.diologCancellationOfRegistration;
 
@@ -21,6 +22,8 @@ public class BdayActivity extends AppCompatActivity {
     String Country;
     String Login;
     String Password;
+
+    Student student;
 
 
     EditText dayEditText;
@@ -42,9 +45,17 @@ public class BdayActivity extends AppCompatActivity {
         Login = getIntent().getStringExtra("login");
         Password = getIntent().getStringExtra("password");
 
+        student = (Student) getIntent().getParcelableExtra(Student.class.getCanonicalName());
+
         dayEditText = (EditText) findViewById(R.id.dayEditText);
         monthEditText = (EditText) findViewById(R.id.monthEditText);
         yearEditText = (EditText) findViewById(R.id.yearEditText);
+
+        if(student != null){
+            dayEditText.setText(student.getBday()[0]);
+            monthEditText.setText(student.getBday()[1]);
+            yearEditText.setText(student.getBday()[2]);
+        }
 
         if(BDay != null){
             dayEditText.setText(BDay[0]);

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Box</string>
     <string name="title_activity_registration_1">RegistrationActivity_1</string>
+    <string name="title_activity_user">UserActivity</string>
 </resources>

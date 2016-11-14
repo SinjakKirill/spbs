@@ -3,6 +3,7 @@ package com.example.sinyakkirill.lab_4_5.registrationactivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaCodec;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,11 @@ import android.widget.Toast;
 
 import com.example.sinyakkirill.lab_4_5.R;
 import com.example.sinyakkirill.lab_4_5.appdatabase.AppDataBase;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.example.sinyakkirill.lab_4_5.registrationactivity.RegistrationFullNameActivity.diologCancellationOfRegistration;
 
 public class LoginAndPasswordActivity extends AppCompatActivity {
 
@@ -77,33 +83,41 @@ public class LoginAndPasswordActivity extends AppCompatActivity {
         Login = LoginEditText.getText().toString();
         Password = PasswordEditText.getText().toString();
 
-        Cursor cursor = db.rawQuery("Select login from Students where login = ?", new String[]{LoginEditText.getText().toString()});
-        //Cursor cursor = db.rawQuery("Select id, login from Students",null);
+        Pattern p = Pattern.compile("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
+        Matcher m = p.matcher(Login);
+        if(m.matches()) {
 
-        if(cursor.moveToFirst()){
-            Log.d("Lab_5", cursor.getString(0));
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Student already have", Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            if(!LoginEditText.getText().toString().equals("") && !PasswordEditText.getText().toString().equals("")) {
-                Intent intent = new Intent(this, FinishRegistrationActivity.class);
-                intent.putExtra("name", Name);
-                intent.putExtra("surname", Surname);
-                intent.putExtra("patronymic", Patronymic);
-                intent.putExtra("bday", BDay);
-                intent.putExtra("city", City);
-                intent.putExtra("country", Country);
-                intent.putExtra("login", Login);
-                intent.putExtra("password", Password);
-                startActivity(intent);
-                this.finish();
-            }
-            else{
+            Cursor cursor = db.rawQuery("Select login from Students where login = ?", new String[]{LoginEditText.getText().toString()});
+
+            if (cursor.moveToFirst()) {
+                Log.d("Lab_5", cursor.getString(0));
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Enter Login and Password!s", Toast.LENGTH_SHORT);
+                        "Student already have", Toast.LENGTH_SHORT);
                 toast.show();
+            } else {
+                if (!LoginEditText.getText().toString().equals("") && !PasswordEditText.getText().toString().equals("")) {
+                    Intent intent = new Intent(this, FinishRegistrationActivity.class);
+                    intent.putExtra("name", Name);
+                    intent.putExtra("surname", Surname);
+                    intent.putExtra("patronymic", Patronymic);
+                    intent.putExtra("bday", BDay);
+                    intent.putExtra("city", City);
+                    intent.putExtra("country", Country);
+                    intent.putExtra("login", Login);
+                    intent.putExtra("password", Password);
+                    startActivity(intent);
+                    this.finish();
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Enter Email and Password!s", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Incorrect email address!", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
@@ -120,5 +134,9 @@ public class LoginAndPasswordActivity extends AppCompatActivity {
         intent.putExtra("password", Password);
         startActivity(intent);
         this.finish();
+    }
+
+    public void cancelRegistration(View view){
+        diologCancellationOfRegistration(this);
     }
 }

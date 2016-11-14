@@ -2,6 +2,7 @@ package com.example.sinyakkirill.lab_4_5.registrationactivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -115,6 +116,20 @@ public class FinishRegistrationActivity extends AppCompatActivity {
         long rowid = db.insert("Students", null, values);
         Log.d("Lab_5", "inserted new Student in table, rowid = " + rowid);
         //deleteDatabase("AppDataBase");
+        Log.d("Lab_5", "______________________________________");
+        Cursor cursor = db.rawQuery("Select surname, name, patronymic, bday, city, country, login, password, awgmark " +
+                        "from Students", null);
+        if(cursor.moveToFirst()){
+            do{
+                Log.d("Lab_5", cursor.getString(1) + "  " +
+                        cursor.getString(2) + "  " +
+                        cursor.getString(4) + "  " +
+                        cursor.getString(5) + "  " +
+                        cursor.getString(6) + "  " +
+                        cursor.getString(7));
+            }while (cursor.moveToNext());
+        }
+        Log.d("Lab_5", "______________________________________");
         finish();
     }
 

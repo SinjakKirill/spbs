@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sinyakkirill.lab_4_5.R;
 import com.example.sinyakkirill.lab_4_5.registrationactivity.BdayActivity;
+import com.example.sinyakkirill.lab_4_5.units.Student;
 
 public class RegistrationFullNameActivity extends AppCompatActivity {
 
@@ -24,6 +26,8 @@ public class RegistrationFullNameActivity extends AppCompatActivity {
     String Country;
     String Login;
     String Password;
+
+    //Student student;
 
 
     EditText surnameEditText;
@@ -39,6 +43,8 @@ public class RegistrationFullNameActivity extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         patronymicEditText = (EditText) findViewById(R.id.patronymicEditText);
         //BDay = new String[3];
+
+        //student = (Student) getIntent().getParcelableExtra(Student.class.getCanonicalName());
 
         InputFilter inputFilter = new InputFilter() {
             @Override
@@ -87,6 +93,7 @@ public class RegistrationFullNameActivity extends AppCompatActivity {
             intent.putExtra("country", Country);
             intent.putExtra("login", Login);
             intent.putExtra("password", Password);
+
             startActivity(intent);
             this.finish();
         }

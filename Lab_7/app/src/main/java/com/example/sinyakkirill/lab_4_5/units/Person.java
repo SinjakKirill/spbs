@@ -10,6 +10,12 @@ import java.util.Date;
 
 public abstract class Person {
 
+    public Person(String Surname, String Name, String Patronymic){
+        this.Surname = Surname;
+        this.Name = Name;
+        this.Patronymic = Patronymic;
+    }
+
     public Person(String Surname, String Name, int[] bdayDDMMYY){
         this.Surname = Surname;
         this.Name = Name;

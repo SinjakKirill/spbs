@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sinyakkirill.lab_4_5.R;
+import com.example.sinyakkirill.lab_4_5.units.Student;
 
 import static com.example.sinyakkirill.lab_4_5.registrationactivity.RegistrationFullNameActivity.diologCancellationOfRegistration;
 
@@ -23,6 +24,8 @@ public class LocationActivity extends AppCompatActivity {
     String Country;
     String Login;
     String Password;
+
+    Student student;
 
     EditText countryEditText;
     EditText cityEditText;
