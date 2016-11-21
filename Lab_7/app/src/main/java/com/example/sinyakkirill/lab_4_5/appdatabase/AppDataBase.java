@@ -27,10 +27,10 @@ public class AppDataBase extends SQLiteOpenHelper {
                     "login text," +
                     "password text," +
                     "awgmark real);");
-            Log.d("Lab_5", "create table Students");
+            Log.d("Lab_7", "create table Students");
         }
         catch (Exception e){
-            Log.d("Lab_5", "error create table Students");
+            Log.d("Lab_7", "error create table Students");
         }
 
     }

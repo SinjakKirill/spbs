@@ -38,7 +38,7 @@ public class Main {
     Logger LOG = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        LOG.info("Starting program____________________________________");
+        /*LOG.info("Starting program____________________________________");
         String fileNameListener = new String("Listeners.json");
         String fileNameStudent = new String("Students.json");
         Staff staffJson = new Staff();
@@ -76,6 +76,6 @@ public class Main {
         manager.sortStaffBySurname(staffJson);
         manager.showCourseInConsole(staffJson);
         System.out.println("\n\n3 best students:");
-        manager.getThreeBestStudentd(staffRandom);
+        manager.getThreeBestStudentd(staffRandom);*/
     }
 }

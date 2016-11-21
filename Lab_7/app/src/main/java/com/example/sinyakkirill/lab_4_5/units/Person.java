@@ -16,13 +16,13 @@ public abstract class Person {
         this.Patronymic = Patronymic;
     }
 
-    public Person(String Surname, String Name, int[] bdayDDMMYY){
+    public Person(String Surname, String Name, Date bdayDDMMYY){
         this.Surname = Surname;
         this.Name = Name;
         this.bday = bdayDDMMYY;
     }
 
-    public Person(String Surname, String Name, String Patronymic, int[] bdayDDMMYY){
+    public Person(String Surname, String Name, String Patronymic, Date bdayDDMMYY){
         this.Surname = Surname;
         this.Name = Name;
         this.Patronymic = Patronymic;
@@ -32,7 +32,16 @@ public abstract class Person {
     protected String Name;
     protected String Surname;
     protected String Patronymic;
-    protected int[] bday;
+
+    public Date getBday() {
+        return bday;
+    }
+
+    public void setBday(Date bday) {
+        this.bday = bday;
+    }
+
+    protected Date bday;
 
     public String getPatronymic() {
         return Patronymic;
@@ -40,14 +49,6 @@ public abstract class Person {
 
     public void setPatronymic(String patronymic) {
         Patronymic = patronymic;
-    }
-
-    public int[] getBday() {
-        return bday;
-    }
-
-    public void setBday(int[] bday) {
-        this.bday = bday;
     }
 
     public String getName() {
@@ -75,12 +76,14 @@ public abstract class Person {
     public static Comparator<Person> snordererBDay = new Comparator<Person>() {
         @Override
         public int compare(Person o1, Person o2) {
-            if(o1.getBday()[2] > o2.getBday()[2])
+            if(o1.getBday().getYear() > o2.getBday().getYear())
                 return 1;
-            if(o1.getBday()[2] < o2.getBday()[2])
+            if(o1.getBday().getYear() < o2.getBday().getYear())
                 return -1;
             return 0;
         }
     };
+
+
 
 }

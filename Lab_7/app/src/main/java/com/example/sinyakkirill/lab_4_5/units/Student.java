@@ -2,50 +2,51 @@ package com.example.sinyakkirill.lab_4_5.units;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.format.DateFormat;
 import android.util.Log;
 
+import java.sql.Date;
 import java.util.Comparator;
 
 /**
  * Created by Sinyak Kirill on 27.09.2016.
  */
 
-public class Student extends Person implements Parcelable  {
+public class Student extends Person {
 
-    public Student(String Surname, String Name, String Patronymic, String City, String Country, String Login, String Password){
+    public Student(String Surname, String Name, String Patronymic, String bday, String City, String Country, String Login){
         super(Surname, Name, Patronymic);
         this.City = City;
         this.Country = Country;
         this.Login = Login;
-        this.Password = Password;
+        //this.bday = ;
     }
 
-    public Student(String Surname, String Name, String Patronymic){
+    /*public Student(String Surname, String Name, String Patronymic, String Login){
         super(Surname, Name, Patronymic);
-        this.bday = new int[3];
         this.avgMark = 0.0f;
         this.Password = new String();
-        this.Login = new String();
-    };
+        this.Login = Login;
+    };*/
 
-    public Student(String Surname, String Name, int[] bdayDDMMYY, float avgMark) {
+    public Student(String Surname, String Name, Date bdayDDMMYY, float avgMark) {
         super(Surname, Name, bdayDDMMYY);
         this.avgMark = avgMark;
     }
 
-    public Student(String Surname, String Name, String Patronymic, int[] bdayDDMMYY, float avgMark) {
+    public Student(String Surname, String Name, String Patronymic, Date bdayDDMMYY, float avgMark) {
         super(Surname, Name, Patronymic, bdayDDMMYY);
         this.avgMark = avgMark;
     }
 
-    public Student(Parcel in) {
+    /*public Student(Parcel in) {
         super(in.readString(), in.readString(), in.readString());
         int[] bday = new int[3];
         in.readIntArray(bday);
         this.bday = bday;
         this.avgMark = in.readFloat();
         this.Login = in.readString();
-    }
+    }*/
 
     private float avgMark;
     private String Login;
@@ -108,7 +109,7 @@ public class Student extends Person implements Parcelable  {
         }
     };
 
-    @Override
+    /*@Override
     public int describeContents() {
         return 0;
     }
@@ -137,4 +138,9 @@ public class Student extends Person implements Parcelable  {
             return new Student[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return this.Surname + " " + this.Name;
+    }*/
 }

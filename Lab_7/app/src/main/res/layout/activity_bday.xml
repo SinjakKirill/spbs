@@ -11,144 +11,150 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sinyakkirill.lab_4_5.registrationactivity.BdayActivity">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="61dp">
-
-            <Button
-                android:background="@drawable/cancel"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/cancel_button"
-                android:onClick="cancelRegistration"
-                />
-
-            <ImageView
-                android:layout_width="81dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/logotip_registration"
-                android:id="@+id/imageView3"
-                android:layout_gravity="right"
-                android:paddingLeft="200dp"
-                android:layout_weight="0.21"/>
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="85dp"
-            app:srcCompat="@drawable/bday"
-            android:id="@+id/imageView2"
-            />
-
-        <TableLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp">
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
 
-            <TableRow
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="61dp">
 
-                <TextView
-                    android:text="dd: "
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textAlignment="textEnd"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView"/>
+                <Button
+                    android:background="@drawable/cancel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/cancel_button"
+                    android:onClick="cancelRegistration"
+                    />
 
-                <EditText
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:hint="day"
-                    android:id="@+id/dayEditText"
-                    android:textAlignment="center"/>
-            </TableRow>
+                <ImageView
+                    android:layout_width="81dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/logotip_registration"
+                    android:id="@+id/imageView3"
+                    android:layout_gravity="right"
+                    android:paddingLeft="200dp"
+                    android:layout_weight="0.21"/>
 
-            <TableRow
+            </LinearLayout>
+
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:text="mm: "
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView3"/>
-
-                <EditText
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:hint="month"
-                    android:id="@+id/monthEditText"
-                    android:textAlignment="center"/>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:text="yy: "
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView4"/>
-
-                <EditText
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:hint="year"
-                    android:id="@+id/yearEditText"
-                    android:textAlignment="center"/>
-            </TableRow>
-
-        </TableLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="151dp"
-            >
-
-            <Button
-                android:background="@drawable/prev"
-                android:layout_width="40dp"
-                android:layout_height="35dp"
-                android:id="@+id/prev_button"
-                android:layout_marginTop="70dp"
-                android:onClick="prevPage"
+                android:layout_height="85dp"
+                app:srcCompat="@drawable/bday"
+                android:id="@+id/imageView2"
                 />
 
-            <Button
-                android:background="@drawable/next"
-                android:onClick="nextPage"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="70dp"
-                android:layout_width="40dp"
-                android:layout_height="35dp"
-                android:id="@+id/next_button"
-                />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="dd: "
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAlignment="textEnd"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"/>
+
+                    <EditText
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:hint="day"
+                        android:id="@+id/dayEditText"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="mm: "
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView3"/>
+
+                    <EditText
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:hint="month"
+                        android:id="@+id/monthEditText"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="yy: "
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"/>
+
+                    <EditText
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:hint="year"
+                        android:id="@+id/yearEditText"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="151dp"
+                >
+
+                <Button
+                    android:background="@drawable/prev"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/prev_button"
+                    android:layout_marginTop="70dp"
+                    android:onClick="prevPage"
+                    />
+
+                <Button
+                    android:background="@drawable/next"
+                    android:onClick="nextPage"
+                    android:layout_marginLeft="240dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/next_button"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

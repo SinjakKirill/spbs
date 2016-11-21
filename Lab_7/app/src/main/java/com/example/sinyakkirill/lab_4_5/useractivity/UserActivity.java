@@ -1,6 +1,8 @@
 package com.example.sinyakkirill.lab_4_5.useractivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,12 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sinyakkirill.lab_4_5.LoginActivity;
 import com.example.sinyakkirill.lab_4_5.R;
+import com.example.sinyakkirill.lab_4_5.appdatabase.AppDataBase;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -24,6 +28,9 @@ public class UserActivity extends AppCompatActivity {
     EditText countryEditText;
     EditText cityEditText;
 
+    AppDataBase mAppDataBase;
+    SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,8 @@ public class UserActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Box");
+        mAppDataBase = new AppDataBase(this);
+        db = mAppDataBase.getWritableDatabase();
 
         surnameEditText = (EditText) findViewById(R.id.surnameEditText);
         nameEditText = (EditText) findViewById(R.id.nameEditText);
@@ -44,22 +53,19 @@ public class UserActivity extends AppCompatActivity {
         countryEditText.setText(LoginActivity.sStudent.getCountry());
         cityEditText.setText(LoginActivity.sStudent.getCity());
 
-        surnameEditText.setInputType(0x00000000);
-        nameEditText.setInputType(0x00000000);
-        patronymicEditText.setInputType(0x00000000);
-        countryEditText.setInputType(0x00000000);
-        cityEditText.setInputType(0x00000000);
+        surnameEditText.setInputType(0x0);
+        nameEditText.setInputType(0x0);
+        patronymicEditText.setInputType(0x0);
+        countryEditText.setInputType(0x0);
+        cityEditText.setInputType(0x0);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Toast toast = Toast.makeText(getApplicationContext(),
-                        "Пора покормить кота!", Toast.LENGTH_SHORT);
-                toast.show();*/
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
-                PhoneNumberUtils phoneNumberUtils = new PhoneNumberUtils();
 
                 Intent openlinkIntent = new Intent(Intent.ACTION_SEND);
                 openlinkIntent.setType("plain/text");
@@ -79,5 +85,67 @@ public class UserActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.activity_menu, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.saveMenu:
+                item.setChecked(true);
+                if(surnameEditText.getInputType() == 0x0){
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Select change!", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    if(!surnameEditText.getText().toString().equals("") &&
+                            !nameEditText.getText().toString().equals("") &&
+                            !patronymicEditText.getText().toString().equals("") &&
+                            !countryEditText.getText().toString().equals("") &&
+                            !cityEditText.getText().toString().equals("")){
+
+                        surnameEditText.setInputType(0x0);
+                        nameEditText.setInputType(0x0);
+                        patronymicEditText.setInputType(0x0);
+                        countryEditText.setInputType(0x0);
+                        cityEditText.setInputType(0x0);
+                        ContentValues values = new ContentValues();
+                        values.put("name", nameEditText.getText().toString());
+                        values.put("surname", surnameEditText.getText().toString());
+                        values.put("patronymic", patronymicEditText.getText().toString());
+                        values.put("country", countryEditText.getText().toString());
+                        values.put("city", cityEditText.getText().toString());
+                        int count = db.update("Students", values, "login = ?", new String[]{LoginActivity.sStudent.getLogin()});
+                        Log.d("Lab_7", "update data in Students table, count = " + count);
+                        Snackbar.make(findViewById(R.id.content_user), "Personal information updated.", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                    else{
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Input data!", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+                return true;
+            case R.id.changeMenu:
+                item.setChecked(true);
+                surnameEditText.setInputType(0x1);
+                nameEditText.setInputType(0x1);
+                patronymicEditText.setInputType(0x1);
+                countryEditText.setInputType(0x1);
+                cityEditText.setInputType(0x1);
+                Snackbar.make(findViewById(R.id.content_user), "Personal information edit mode.", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+                return true;
+            case R.id.exitMenu:
+                item.setChecked(true);
+                LoginActivity.sStudent = null;
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

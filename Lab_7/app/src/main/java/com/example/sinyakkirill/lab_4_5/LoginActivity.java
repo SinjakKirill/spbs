@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sinyakkirill.lab_4_5.adminactivity.AdminActivity;
 import com.example.sinyakkirill.lab_4_5.appdatabase.AppDataBase;
 import com.example.sinyakkirill.lab_4_5.hash.MD5Hash;
 import com.example.sinyakkirill.lab_4_5.registrationactivity.RegistrationFullNameActivity;
@@ -21,13 +22,18 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //  save Logout Change
+
+    final private String adminLogin = "admin";
+    final private String adminPassword = "admin";
+
     public static Student sStudent;
 
     EditText loginEditText;
     EditText passwordEditText;
 
     AppDataBase mAppDataBase;
-    SQLiteDatabase db;
+    public static SQLiteDatabase sDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +41,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAppDataBase = new AppDataBase(this);
-        db = mAppDataBase.getWritableDatabase();
+        sDb = mAppDataBase.getWritableDatabase();
 
         loginEditText = (EditText) findViewById(R.id.loginEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 
-        loginEditText.setText("sinjak.kirill@gmail.com");
-        passwordEditText.setText("123");
+        loginEditText.setText("admin");
+        passwordEditText.setText("admin");
 
     }
 
@@ -52,49 +58,51 @@ public class LoginActivity extends AppCompatActivity {
 
     public void singIn(View view){
 
-        Pattern p = Pattern.compile("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
-        Matcher m = p.matcher(loginEditText.getText().toString());
-        if(m.matches()) {
-            Cursor cursor = db.rawQuery("Select surname, name, patronymic, bday, city, country, login, password, awgmark " +
-                    "from Students where login = ?", new String[]{loginEditText.getText().toString()});
-            if (cursor.moveToFirst()) {
+        if(loginEditText.getText().toString().equals(adminLogin) && passwordEditText.getText().toString().equals(adminPassword)) {
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        }else{
+            Pattern p = Pattern.compile("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
+            Matcher m = p.matcher(loginEditText.getText().toString());
+            if (m.matches()) {
+                Cursor cursor = sDb.rawQuery("Select surname, name, patronymic, bday, city, country, login, password, awgmark " +
+                        "from Students where login = ?", new String[]{loginEditText.getText().toString()});
+                if (cursor.moveToFirst()) {
 
-                LoginActivity.sStudent = new Student(cursor.getString(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getString(7));
+                    LoginActivity.sStudent = new Student(cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7));
 
-                Log.d("Lab_5", cursor.getString(0) + "  " +
-                        cursor.getString(1) + "  " +
-                        cursor.getString(2) + "  " +
-                        cursor.getString(4) + "  " +
-                        cursor.getString(5) + "  " +
-                        cursor.getString(6) + "  " +
-                        cursor.getString(7));
+                    Log.d("Lab_5", cursor.getString(0) + "  " +
+                            cursor.getString(1) + "  " +
+                            cursor.getString(2) + "  " +
+                            cursor.getString(4) + "  " +
+                            cursor.getString(5) + "  " +
+                            cursor.getString(6) + "  " +
+                            cursor.getString(7));
 
-                if(sStudent.getPassword().equals(MD5Hash.md5Custom(passwordEditText.getText().toString()))){
-                    Intent intent = new Intent(this, UserActivity.class);
-                    startActivity(intent);
-                }
-                else{
+                    if (sStudent.getPassword().equals(MD5Hash.md5Custom(passwordEditText.getText().toString()))) {
+                        Intent intent = new Intent(this, UserActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Incorrect password!", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Incorrect password!", Toast.LENGTH_SHORT);
+                            "User does not exist!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
-            else{
+            } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "User does not exist!", Toast.LENGTH_SHORT);
+                        "Incorrect email!", Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }
-        else{
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Incorrect email!", Toast.LENGTH_SHORT);
-            toast.show();
         }
     }
 
