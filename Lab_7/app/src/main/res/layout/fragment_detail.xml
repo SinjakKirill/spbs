@@ -26,11 +26,13 @@
                     android:id="@+id/imageView5"/>
 
                 <TextView
+                    android:text="Full name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/fullNameTextView"
                     android:textSize="15dp"
-                    android:textAlignment="center"/>
+                    android:layout_margin="20dp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
             </TableRow>
 
@@ -46,10 +48,13 @@
                     android:id="@+id/imageView7"/>
 
                 <TextView
-                    android:text="TextView"
+                    android:text="Birthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/bdayTextView"/>
+                    android:id="@+id/bdayTextView"
+                    android:textSize="15dp"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             </TableRow>
 
             <TableRow
@@ -64,10 +69,13 @@
                     android:id="@+id/imageView10"/>
 
                 <TextView
-                    android:text="TextView"
+                    android:text="Location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/locationTextView"/>
+                    android:id="@+id/locationTextView"
+                    android:textSize="15dp"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             </TableRow>
 
             <TableRow
@@ -82,10 +90,13 @@
                     android:id="@+id/imageView11"/>
 
                 <TextView
-                    android:text="TextView"
+                    android:text="Email address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/emaiTextView"/>
+                    android:id="@+id/emaiTextView"
+                    android:textSize="15dp"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             </TableRow>
         </TableLayout>
     </ScrollView>

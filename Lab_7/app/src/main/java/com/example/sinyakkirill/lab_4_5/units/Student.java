@@ -19,7 +19,7 @@ public class Student extends Person {
         this.City = City;
         this.Country = Country;
         this.Login = Login;
-        //this.bday = ;
+        this.bday = bday;
     }
 
     /*public Student(String Surname, String Name, String Patronymic, String Login){
@@ -29,12 +29,12 @@ public class Student extends Person {
         this.Login = Login;
     };*/
 
-    public Student(String Surname, String Name, Date bdayDDMMYY, float avgMark) {
+    public Student(String Surname, String Name, String bdayDDMMYY, float avgMark) {
         super(Surname, Name, bdayDDMMYY);
         this.avgMark = avgMark;
     }
 
-    public Student(String Surname, String Name, String Patronymic, Date bdayDDMMYY, float avgMark) {
+    public Student(String Surname, String Name, String Patronymic, String bdayDDMMYY, float avgMark) {
         super(Surname, Name, Patronymic, bdayDDMMYY);
         this.avgMark = avgMark;
     }
@@ -53,6 +53,14 @@ public class Student extends Person {
     private String Password;
     private String Country;
     private String City;
+
+    public Student(String Surname, String Name, String Patronymic, String bday, String City, String Country, String Login, String Password) {
+        super(Surname, Name, Patronymic, bday);
+        this.City = City;
+        this.Country = Country;
+        this.Login = Login;
+        this.Password = Password;
+    }
 
     public String getCountry() {
         return Country;
@@ -137,10 +145,10 @@ public class Student extends Person {
         public Student[] newArray(int size) {
             return new Student[size];
         }
-    };
+    };*/
 
     @Override
     public String toString() {
         return this.Surname + " " + this.Name;
-    }*/
+    }
 }

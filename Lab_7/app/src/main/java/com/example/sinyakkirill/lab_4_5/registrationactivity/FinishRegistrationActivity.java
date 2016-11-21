@@ -107,7 +107,7 @@ public class FinishRegistrationActivity extends AppCompatActivity {
         values.put("name", Name);
         values.put("surname", Surname);
         values.put("patronymic", Patronymic);
-        values.put("bday", BDay[0] + "-" + BDay[1] + "-" + BDay[2]);
+        values.put("bday", BDay[0] + "." + BDay[1] + "." + BDay[2]);
         values.put("city", City);
         values.put("country", Country);
         values.put("login", Login);

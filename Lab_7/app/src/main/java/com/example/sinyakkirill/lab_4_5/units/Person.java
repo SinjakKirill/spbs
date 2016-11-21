@@ -1,5 +1,6 @@
 package com.example.sinyakkirill.lab_4_5.units;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -16,13 +17,7 @@ public abstract class Person {
         this.Patronymic = Patronymic;
     }
 
-    public Person(String Surname, String Name, Date bdayDDMMYY){
-        this.Surname = Surname;
-        this.Name = Name;
-        this.bday = bdayDDMMYY;
-    }
-
-    public Person(String Surname, String Name, String Patronymic, Date bdayDDMMYY){
+    public Person(String Surname, String Name, String Patronymic, String bdayDDMMYY){
         this.Surname = Surname;
         this.Name = Name;
         this.Patronymic = Patronymic;
@@ -33,15 +28,15 @@ public abstract class Person {
     protected String Surname;
     protected String Patronymic;
 
-    public Date getBday() {
+    public String getBday() {
         return bday;
     }
 
-    public void setBday(Date bday) {
+    public void setBday(String bday) {
         this.bday = bday;
     }
 
-    protected Date bday;
+    protected String bday;
 
     public String getPatronymic() {
         return Patronymic;
@@ -76,10 +71,16 @@ public abstract class Person {
     public static Comparator<Person> snordererBDay = new Comparator<Person>() {
         @Override
         public int compare(Person o1, Person o2) {
-            if(o1.getBday().getYear() > o2.getBday().getYear())
+            SimpleDateFormat formatO1 = new SimpleDateFormat();
+            SimpleDateFormat formatO2 = new SimpleDateFormat();
+            formatO1.applyPattern(o1.getBday());
+            formatO2.applyPattern(o2.getBday());
+            formatO1.getDateFormatSymbols();
+
+            /*if(o1.getBday() > o2.getBday())
                 return 1;
-            if(o1.getBday().getYear() < o2.getBday().getYear())
-                return -1;
+            if(o1.getBday() < o2.getBday())
+                return -1;*/
             return 0;
         }
     };

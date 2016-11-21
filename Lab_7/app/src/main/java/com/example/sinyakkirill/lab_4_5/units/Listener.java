@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 
 public class Listener extends Person {
-    public Listener(String Surname, String Name, Date bdayDDMMYY, Organizations organizations){
+    public Listener(String Surname, String Name, String bdayDDMMYY, Organizations organizations){
         super(Surname, Name, bdayDDMMYY);
         this.organization = organizations;
     }

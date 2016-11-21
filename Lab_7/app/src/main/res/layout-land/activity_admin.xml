@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email"/>
+
     <fragment class="com.example.sinyakkirill.lab_4_5.fragments.ListStudent"
               android:id="@+id/fragment_list"
               android:layout_weight="1"
@@ -17,4 +27,45 @@
               android:layout_height="match_parent" >
     </fragment>
 
+</LinearLayout>-->
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.sinyakkirill.lab_4_5.adminactivity.AdminActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment class="com.example.sinyakkirill.lab_4_5.fragments.ListStudent"
+              android:id="@+id/fragment_list"
+              android:layout_weight="1"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" >
+    </fragment>-->
+
+    <fragment class="com.example.sinyakkirill.lab_4_5.fragments.StudentDetail"
+              android:id="@+id/fragment_detail"
+              android:layout_weight="1"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" >
+    </fragment>
+
 </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email"/>
+
+</android.support.design.widget.CoordinatorLayout>

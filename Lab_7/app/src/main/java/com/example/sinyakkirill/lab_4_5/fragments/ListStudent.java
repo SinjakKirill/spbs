@@ -3,6 +3,7 @@ package com.example.sinyakkirill.lab_4_5.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,13 +41,22 @@ public class ListStudent extends ListFragment {
     TextView emailTextView;
     TextView bdayTextView;
 
+    View item;
+
     ArrayList<Student> studentArrayList;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        /*item =  getActivity().findViewById(R.id.deleteMenu);
 
+        item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(), "XXX", Toast.LENGTH_LONG).show();
+            }
+        });*/
 
         fullNameTextView = (TextView) getActivity().findViewById(R.id.fullNameTextView);
         locationTextView = (TextView) getActivity().findViewById(R.id.locationTextView);
@@ -77,9 +87,12 @@ public class ListStudent extends ListFragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 StudentDetail fragment = (StudentDetail) getFragmentManager().findFragmentById(R.id.fragment_detail);
                 if (fragment != null && fragment.isInLayout()) {
-                    /*fullNameTextView.setText(studentArrayList.get(position).getSurname() + "\n" +
-                            studentArrayList.get(position).getName() + "\n" +
-                            studentArrayList.get(position).getLogin());*/
+                    fullNameTextView.setText(studentArrayList.get(position).getSurname() + " " +
+                            studentArrayList.get(position).getName() + " " +
+                            studentArrayList.get(position).getPatronymic());
+                    locationTextView.setText(studentArrayList.get(position).getCountry() + ", " + studentArrayList.get(position).getCity());
+                    bdayTextView.setText(studentArrayList.get(position).getBday());
+                    emailTextView.setText(studentArrayList.get(position).getLogin());
                 }
                 getListView().setItemChecked(position, true);
                 return true;
@@ -127,9 +140,12 @@ public class ListStudent extends ListFragment {
         if (fragment != null && fragment.isInLayout()) {
             Log.d("Lab_7", "horizontal");
             getListView().setItemChecked(position, false);
-            fullNameTextView.setText(studentArrayList.get(position).getSurname() + "\n" +
-                    studentArrayList.get(position).getName() + "\n" +
+            fullNameTextView.setText(studentArrayList.get(position).getSurname() + " " +
+                    studentArrayList.get(position).getName() + " " +
                     studentArrayList.get(position).getPatronymic());
+            locationTextView.setText(studentArrayList.get(position).getCountry() + ", " + studentArrayList.get(position).getCity());
+            bdayTextView.setText(studentArrayList.get(position).getBday());
+            emailTextView.setText(studentArrayList.get(position).getLogin());
 
         } else {
             getListView().setItemChecked(position, false);

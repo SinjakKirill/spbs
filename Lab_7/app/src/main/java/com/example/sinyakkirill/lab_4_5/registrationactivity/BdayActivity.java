@@ -52,9 +52,9 @@ public class BdayActivity extends AppCompatActivity {
         yearEditText = (EditText) findViewById(R.id.yearEditText);
 
         if(student != null){
-            dayEditText.setText(String.valueOf(student.getBday().getDay()));
-            monthEditText.setText(String.valueOf(student.getBday().getMonth()));
-            yearEditText.setText(String.valueOf(student.getBday().getYear()));
+            dayEditText.setText(student.getBday());
+            monthEditText.setText(student.getBday());
+            yearEditText.setText(student.getBday());
         }
 
         if(BDay != null){
