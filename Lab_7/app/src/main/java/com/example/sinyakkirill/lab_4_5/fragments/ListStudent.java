@@ -2,6 +2,8 @@ package com.example.sinyakkirill.lab_4_5.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.ClipData;
 import android.content.Context;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.sinyakkirill.lab_4_5.LoginActivity;
 import com.example.sinyakkirill.lab_4_5.R;
+import com.example.sinyakkirill.lab_4_5.adminactivity.AdminActivity;
 import com.example.sinyakkirill.lab_4_5.adminactivity.AdminDetailActivity;
 import com.example.sinyakkirill.lab_4_5.units.Student;
 
@@ -34,33 +39,30 @@ import java.util.ArrayList;
  */
 
 public class ListStudent extends ListFragment {
-    String data[] = new String[] { "one", "two", "three", "four" };
 
     TextView fullNameTextView;
     TextView locationTextView;
     TextView emailTextView;
     TextView bdayTextView;
+    public static ArrayAdapter<Student> adapter;
 
-    View item;
+    public static ArrayList<Student> studentArrayList;
+    onStudentSelectedItem mCallback;
 
-    ArrayList<Student> studentArrayList;
+    public interface onStudentSelectedItem{
+        public void setInndex(Student student);
+        public void unCheckIndex(Student student);
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        /*item =  getActivity().findViewById(R.id.deleteMenu);
-
-        item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "XXX", Toast.LENGTH_LONG).show();
-            }
-        });*/
+        setRetainInstance(true);
 
         fullNameTextView = (TextView) getActivity().findViewById(R.id.fullNameTextView);
         locationTextView = (TextView) getActivity().findViewById(R.id.locationTextView);
-        emailTextView = (TextView) getActivity().findViewById(R.id.emaiTextView);
+        emailTextView = (TextView) getActivity().findViewById(R.id.emailTextView);
         bdayTextView = (TextView) getActivity().findViewById(R.id.bdayTextView);
 
         studentArrayList = new ArrayList<>();
@@ -73,7 +75,8 @@ public class ListStudent extends ListFragment {
         }
 
 
-        ArrayAdapter<Student> adapter = new ArrayAdapter<Student>(getActivity(),
+
+        adapter = new ArrayAdapter<Student>(getActivity(),
                 android.R.layout.simple_list_item_multiple_choice, studentArrayList);
         setListAdapter(adapter);
 
@@ -85,22 +88,32 @@ public class ListStudent extends ListFragment {
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                StudentDetail fragment = (StudentDetail) getFragmentManager().findFragmentById(R.id.fragment_detail);
-                if (fragment != null && fragment.isInLayout()) {
-                    fullNameTextView.setText(studentArrayList.get(position).getSurname() + " " +
-                            studentArrayList.get(position).getName() + " " +
-                            studentArrayList.get(position).getPatronymic());
-                    locationTextView.setText(studentArrayList.get(position).getCountry() + ", " + studentArrayList.get(position).getCity());
-                    bdayTextView.setText(studentArrayList.get(position).getBday());
-                    emailTextView.setText(studentArrayList.get(position).getLogin());
+                SparseBooleanArray sparseBooleanArray = getListView().getCheckedItemPositions();
+                if(!sparseBooleanArray.get(position)){
+                    mCallback = (onStudentSelectedItem) getActivity();
+                    mCallback.setInndex(studentArrayList.get(position));
                 }
                 getListView().setItemChecked(position, true);
                 return true;
             }
         });
-    }
 
-    //android:choiceMode="multipleChoice"
+        if(studentArrayList.size() != 0 && getActivity().findViewById(R.id.fragment_container) != null){
+            StudentDetail firstFragment = new StudentDetail();
+            Bundle bundle = new Bundle();
+            bundle.putString("fullname", studentArrayList.get(0).getSurname() + " " +
+                    studentArrayList.get(0).getName() + " " +
+                    studentArrayList.get(0).getPatronymic());
+            bundle.putString("bday", studentArrayList.get(0).getBday());
+            bundle.putString("location", studentArrayList.get(0).getCity() + ", " + studentArrayList.get(0).getCountry());
+            bundle.putString("login", studentArrayList.get(0).getLogin());
+            //
+            firstFragment.setArguments(bundle);
+            int i = getFragmentManager().beginTransaction().replace(R.id.fragment_container, firstFragment).addToBackStack("myFragment").commit();
+
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,52 +121,56 @@ public class ListStudent extends ListFragment {
         return inflater.inflate(R.layout.fragment, null);
     }
 
-
-    /*@Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getItemId()) {
-            case R.id.delete:
-                Toast.makeText(getActivity().getApplicationContext(), "Delete", Toast.LENGTH_LONG);
-                return true;
-            case R.id.update:
-                Toast.makeText(getActivity().getApplicationContext(), "update", Toast.LENGTH_LONG);
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }*/
-
     //выполняется при нажатии на фрагмент(имя и фамилия студента)
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
 
+        //отмена выбора студента для удаления
+        mCallback = (onStudentSelectedItem) getActivity();
+        mCallback.unCheckIndex(studentArrayList.get(position));
+
         //выполняется получение fragment detail, чтобы определить ориентацию экрана
-        StudentDetail fragment = (StudentDetail) getFragmentManager().findFragmentById(R.id.fragment_detail);
-        if (fragment != null && fragment.isInLayout()) {
-            Log.d("Lab_7", "horizontal");
+        if(getActivity().findViewById(R.id.fragment_container) != null){
             getListView().setItemChecked(position, false);
-            fullNameTextView.setText(studentArrayList.get(position).getSurname() + " " +
+
+            //
+            StudentDetail firstFragment = new StudentDetail();
+            Bundle bundle = new Bundle();
+            bundle.putString("fullname", studentArrayList.get(position).getSurname() + " " +
                     studentArrayList.get(position).getName() + " " +
                     studentArrayList.get(position).getPatronymic());
-            locationTextView.setText(studentArrayList.get(position).getCountry() + ", " + studentArrayList.get(position).getCity());
-            bdayTextView.setText(studentArrayList.get(position).getBday());
-            emailTextView.setText(studentArrayList.get(position).getLogin());
+            bundle.putString("bday", studentArrayList.get(position).getBday());
+            bundle.putString("location", studentArrayList.get(position).getCity() + ", " + studentArrayList.get(position).getCountry());
+            bundle.putString("login", studentArrayList.get(position).getCity() + ", " + studentArrayList.get(position).getCountry());
+            //
+            firstFragment.setArguments(bundle);
+            int i = getFragmentManager().beginTransaction().replace(R.id.fragment_container, firstFragment).addToBackStack("myFragment").commit();
+            Log.d("Lab_7", "commit = " + i);
 
         } else {
             getListView().setItemChecked(position, false);
+            Intent intent = new Intent(getActivity(), AdminDetailActivity.class);
+            intent.putExtra("fullname", studentArrayList.get(position).getSurname() + " " +
+                    studentArrayList.get(position).getName() + " " +
+                    studentArrayList.get(position).getPatronymic());
+            intent.putExtra("bday", studentArrayList.get(position).getBday());
+            intent.putExtra("location", studentArrayList.get(position).getCity() + ", " + studentArrayList.get(position).getCountry());
+            intent.putExtra("login", studentArrayList.get(position).getCity() + ", " + studentArrayList.get(position).getCountry());
+            startActivity(intent);
             Log.d("Lab_7", "vertical");
-            //Intent intent = new Intent(getActivity().getApplicationContext(), AdminDetailActivity.class);
-            //intent.putExtra("selectedValue", item);
-            //startActivity(intent);
         }
+    }
+
+    public static void refreshListView(){
+        studentArrayList.clear();
+        Cursor cursor = LoginActivity.sDb.rawQuery("Select surname, name, patronymic, bday, city, country, login from Students", null);
+        if(cursor.moveToFirst()){
+            Log.d("Lab_7", "number Students = " + cursor.getCount());
+            do{
+                studentArrayList.add(new Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
+            } while(cursor.moveToNext());
+        }
+        adapter.notifyDataSetChanged();
     }
 
 }

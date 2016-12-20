@@ -64,17 +64,16 @@ public class UserActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
-
+                String message = new String("" +
+                        "" +
+                        "" +
+                        "" +
+                        "");
                 Intent openlinkIntent = new Intent(Intent.ACTION_SEND);
                 openlinkIntent.setType("plain/text");
-
-                openlinkIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sinjak.kirill@gmail.com"});
-                openlinkIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-                        "laba 8 - 9");
-                openlinkIntent.putExtra(Intent.EXTRA_TEXT, "I love you!");
-
+                //openlinkIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sinjak.kirill@gmail.com"});
+                openlinkIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Information about me.");
+                openlinkIntent.putExtra(Intent.EXTRA_TEXT, message);
                 startActivity(openlinkIntent);
             }
         });

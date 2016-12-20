@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/deleteMenu"
         android:orderInCategory="10"
-        android:showAsAction="always"
+        yourapp:showAsAction="withText"
         android:title="Delete"
         android:icon="@drawable/email">
     </item>
@@ -11,25 +12,39 @@
     <item
             android:id="@+id/sortByFullnameMenu"
             android:orderInCategory="10"
-            android:showAsAction="always"
-            android:title="Sort by full name"
-            android:icon="@drawable/email">
+            yourapp:showAsAction="withText"
+            android:title="Sort by full name">
     </item>
 
     <item
             android:id="@+id/sortByBDayMenu"
             android:orderInCategory="10"
-            android:showAsAction="always"
             android:title="Sort by birthday"
-            android:icon="@drawable/email">
+            yourapp:showAsAction="withText">
 
     </item>
 
     <item
         android:id="@+id/exitMenu"
         android:orderInCategory="10"
-        android:showAsAction="always"
-        android:title="Exit"
-        android:icon="@drawable/email">
+        yourapp:showAsAction="withText"
+        android:title="Exit">
     </item>
+
+    <item
+        android:id="@+id/copyMenu"
+        android:orderInCategory="10"
+        yourapp:showAsAction="always"
+        android:icon="@drawable/copy"
+        android:title="Exit">
+    </item>
+
+    <item
+        android:id="@+id/action_search"
+        yourapp:actionViewClass="android.support.v7.widget.SearchView"
+        android:orderInCategory="10"
+        yourapp:showAsAction="always"
+        android:title="Search">
+    </item>
+
 </menu>
