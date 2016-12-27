@@ -18,16 +18,13 @@ import java.util.ArrayList;
 
 public class ListNewsHabrahabr extends ListFragment {
 
-    ArrayList<String> arr = new ArrayList<>();
-    ArrayAdapter<String> adapter;// = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arr);
+    public static ArrayAdapter<String> adapter;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //arr = getResources().getStringArray(R.array.itemNavigationDrawer);
-        //getListView().setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arr));
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arr);
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, MainActivity.yandexList);
         getListView().setAdapter(adapter);
     }
 
@@ -35,10 +32,5 @@ public class ListNewsHabrahabr extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_list, null);
-    }
-
-    public void refreshAdapter(ArrayList<String> stringArrayList){
-        arr = stringArrayList;
-        //adapter.notifyDataSetChanged();
     }
 }

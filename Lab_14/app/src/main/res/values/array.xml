@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="itemNavigationDrawer">
-        <item>News habrahabr</item>
+        <item>News yandex</item>
         <item>Exchange rates</item>
-        <item>Новости 3</item>
-        <item>Новости 4</item>
     </array>
 </resources>
